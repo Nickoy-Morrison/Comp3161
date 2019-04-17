@@ -1,10 +1,11 @@
+DROP DATABASE IF EXISTS Bank;
 create database Bank;
 use Bank;
 
 create table CreditDetails(
-	card_num varchar(15) not null,
-	expiration_month tinyint(2) not null,
-	expiration_year smallint(4) not null,
+    card_num varchar(30) not null,
+	expiration_ varchar(30) not null,
+	expiration_year varchar(30) not null,
 	PRIMARY KEY(card_num))
 ENGINE=InnoDB;
 

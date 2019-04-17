@@ -1,6 +1,6 @@
 
 /*======================= CompuStore Main Database ===================================================*/
-
+DROP DATABASE IF EXISTS CompuStore;
 create database CompuStore;
 use CompuStore;
 
@@ -19,16 +19,16 @@ create table CustomerAccount(
 
 /* CreditCardDetails(card_num, expiration_month, expiration_year, billing_street, billing_city, billing_parish) */
 create table CreditCardDetails(
-	card_num int not null,
-	expiration_month tinyint(2) not null,
-	expiration_year smallint(4) not null,
+	card_num varchar(30) not null,
+	expiration_month varchar(30) not null,
+	expiration_year varchar(30) not null,
 	primary key(card_num) 
 );
 
 /*CustomerCreditCard(acc_id, card_num)*/
 create table CustomerCreditCard(
 	acc_id int not null,
-	card_num int not null,
+	card_num varchar(30) not null,
 	primary key(acc_id, card_num),
 	foreign key(acc_id) references CustomerAccount(acc_id) on DELETE cascade on UPDATE cascade,
 	foreign key(card_num) references CreditCardDetails(card_num) on DELETE cascade on UPDATE cascade
@@ -266,7 +266,7 @@ DELIMITER ;
 
 
 /*======================= Branch1 Database ===================================================*/
-
+DROP DATABASE IF EXISTS Branch1;
 create database Branch1;
 use Branch1;
 
@@ -325,7 +325,7 @@ DELIMITER ;
 
 
 /*======================= Branch2 Database ===================================================*/
-
+DROP DATABASE IF EXISTS Branch2;
 create database Branch2;
 use Branch2;
 
@@ -383,7 +383,7 @@ DELIMITER //
 DELIMITER ;
 
 /*======================= Branch3 Database ===================================================*/
-
+DROP DATABASE IF EXISTS Branch3;
 create database Branch3;
 use Branch3;
 
