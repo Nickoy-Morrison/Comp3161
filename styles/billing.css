@@ -1,0 +1,42 @@
+body{
+  font-family: Verdana;
+  background-image: linear-gradient(#99c2ff,#3385ff,#0066ff);
+  padding: 0;
+  margin: 0;
+  height: auto;
+  width: auto;
+}
+
+#FirstImg{
+  margin-left: 150px;
+}
+
+select{
+  border-radius: 12px;
+  margin-left: 350px;
+  border-color: purple;
+}
+
+p{
+  margin-left: 350px;
+}
+
+h2{
+  font-family: Lucida;
+  margin-left: 400px;
+}
+
+.secImg{
+  padding: 20px;
+  border: 2px solid #99c2ff;
+  height: 250px;
+  width: 250px;
+  margin-left: 800px;
+  border-radius: 20px;
+  background-color: #d9b3ff;
+}
+
+.Content{
+  margin-bottom: 100px;
+
+}
