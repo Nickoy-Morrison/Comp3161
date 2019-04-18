@@ -14,7 +14,7 @@
     	 <div id="header"></div>
     <div class="myGrid">
     <div class="topBox" >
-   <img src= "workspace/img/welcome.png" id="welcomeimage"/> <br> <br>
+   <img src= "img/welcome.png" id="welcomeimage"/> <br> <br>
    </div>
         
 <div class="SideImage">
@@ -22,7 +22,7 @@
     $host = getenv('IP');
     $username = getenv('C9_USER');
     $password = '';
-    $dbname = 'CompuStore';
+    $dbname = 'project_3';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -32,7 +32,7 @@ if ($conn->connect_error) {
 session_start();
 $userID =$_SESSION['userid'];
 
-$sql = "SELECT * FROM Laptop INNER JOIN CartItems on Laptop.model_id= CartItems.model_id INNER JOIN Branch on Branch.br_id = CartItems.br_id INNER JOIN Carttotal on CartItems.acc_id = $userID";
+$sql = "SELECT * FROM Product INNER JOIN CartItems on Product.Product_id= CartItems.Product_id INNER JOIN Branch on Branch.br_id = CartItems.br_id INNER JOIN Carttotal on CartItems.Customer_id = $userID";
 $result1 = $conn->query($sql);
 
 $result = $conn->query($sql);
@@ -42,8 +42,8 @@ if ($result->num_rows > 0) {
      $row1=mysqli_fetch_assoc($result1);  
     while($row = $result->fetch_assoc()) {
         echo "<br>";
-        echo "<div class='growIt'>".$row["brand"];
-        echo $row["model"]."</div>";
+        echo "<div class='growIt'>".$row["Prod_brand"];
+        echo $row["Model"]."</div>";
         echo "<div> Cost:";
         echo $row["cost"]."</div>";
         echo "<div> Quantity:";

@@ -2,10 +2,10 @@
            $host = getenv('IP');
            $username = getenv('C9_USER');
            $password = '';
-           $dbname = 'Branch1';
-           $dbname1 = 'Branch2';
-           $dbname2 = 'Branch3';
-           $dbmainname = 'CompuStore';
+           $dbname = 'Branch_1';
+           $dbname1 = 'Branch_2';
+           $dbname2 = 'Branch_3';
+           $dbmainname = 'project_3';
            session_start();
            $modelid=$_SESSION['uid'];
            $userID =$_SESSION['userid'];
@@ -16,18 +16,18 @@
            $conn1 = new mysqli($servername, $username, $password, $dbname1);
            $conn2 = new mysqli($servername, $username, $password, $dbname2);
           
-          	$result = mysqli_query($conn,"SELECT * FROM AmountInStock WHERE model_id = '$modelid'");
-          	$result1 = mysqli_query($conn1,"SELECT * FROM AmountInStock WHERE model_id ='$modelid' ");
-          	$result2 = mysqli_query($conn2,"SELECT * FROM AmountInStock WHERE model_id ='$modelid' ");
+          	$result = mysqli_query($conn,"SELECT * FROM AmountInStock WHERE Product_id = '$modelid' ");
+          	$result1 = mysqli_query($conn1,"SELECT * FROM AmountInStock WHERE Product_id = '$modelid' ");
+          	$result2 = mysqli_query($conn2,"SELECT * FROM AmountInStock WHERE Product_id = '$modelid' ");
           
           	$row1=mysqli_fetch_assoc($result);
           	$row2=mysqli_fetch_assoc($result1);
           	$row3=mysqli_fetch_assoc($result2);
           	
           	if($row1['quantity'] > $row2['quantity']  and $row1['quantity'] > $row3['quantity'] ){
-          	 $BD=strtolower($dbname);
+          	 $BD=$dbname;
           	 $connM = new mysqli($servername, $username, $password, $dbmainname);
-          	 $resultM = mysqli_query($connM,"SELECT * FROM Branch WHERE name = '$BD'");
+          	 $resultM = mysqli_query($connM,"SELECT * FROM Branch WHERE name Like '%$BD%'");
           	 $row=mysqli_fetch_assoc($resultM);
           	 $brID=$row['br_id'];
           	 
@@ -50,9 +50,9 @@
           	
           	}elseif($row2['quantity']> $row1['quantity']and $row2['quantity'] > $row3['quantity']){
           	
-          	$BD=strtolower($dbname1);
+          	$BD=$dbname1;
           	 $connM = new mysqli($servername, $username, $password, $dbmainname);
-          	 $resultM = mysqli_query($connM,"SELECT * FROM Branch WHERE name = '$BD'");
+          	 $resultM = mysqli_query($connM,"SELECT * FROM Branch WHERE name Like '%$BD%'");
           	 $row=mysqli_fetch_assoc($resultM);
           	 $brID=$row['br_id'];
           	 
@@ -76,9 +76,9 @@
           	 
           	}elseif($row3['quantity'] > $row1['quantity'] and $row3['quantity']> $row2['quantity']){
           	
-          	$BD=strtolower($dbname2);
+          	$BD=$dbname2;
           	 $connM = new mysqli($servername, $username, $password, $dbmainname);
-          	 $resultM = mysqli_query($connM,"SELECT * FROM Branch WHERE name = '$BD'");
+          	 $resultM = mysqli_query($connM,"SELECT * FROM Branch WHERE name Like '%$BD%'");
           	 $row=mysqli_fetch_assoc($resultM);
           	 $brID=$row['br_id'];
           	  try {
@@ -96,6 +96,8 @@
              {
             echo $sql . "<br>" . $e->getMessage();
                 }
+          	}else{
+          	   header("Location: OutOfstock.html");
           	}
 
           	

@@ -2,7 +2,7 @@
 $host = getenv('IP');
 $username = getenv('C9_USER');
 $password = '';
-$dbname = 'CompuStore';
+$dbname = 'project_3';
  
 $a=$_POST['uname'];
 $b=$_POST['psw'];
@@ -12,7 +12,7 @@ $email = $_SESSION['email'];
 $psw = $_SESSION['psw'];
 
 $conn = mysqli_connect($host, $username, $password, $dbname);
-	$result = mysqli_query($conn,"SELECT * FROM CustomerAccount WHERE email = '$a' OR email = '$email' AND password = '$b' OR password = '$psw'");
+	$result = mysqli_query($conn,"SELECT * FROM Customer WHERE Customer_email = '$a' OR Customer_email = '$email' AND Password = '$b' OR Password = '$psw'");
 	$count  = mysqli_num_rows($result);
 	$set = mysqli_fetch_array($result);
 
@@ -21,7 +21,7 @@ $conn = mysqli_connect($host, $username, $password, $dbname);
 		echo $message;
 		session_start();
 		
-		$go = $set['acc_id'];
+		$go = $set['Customer_id'];
 		$_SESSION['userid']= $go;
 		header("Location: home.php");
 	}elseif ($a == "admin" AND $b =="pass123" ){

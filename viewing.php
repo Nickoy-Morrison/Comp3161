@@ -5,7 +5,7 @@
          <script src="//code.jquery.com/jquery-1.10.2.js"></script>
      <script> 
         $(function(){
-        $("#header").load("header.1.html"); 
+        $("#header").load("html/header.1.html"); 
         $("#footer").load("footer.html"); 
         });
 </script>
@@ -14,7 +14,7 @@
     	 <div id="header"></div>
     <div class="myGrid">
          <div class="topBox" >
-            <img src= "workspace/img/welcome.png" id="welcomeimage"/> <br> <br>
+            <img src= "img/welcome.png" id="welcomeimage"/> <br> <br>
         </div>
         
         <div class="SideImage">
@@ -22,7 +22,7 @@
     $host = getenv('IP');
 $username = getenv('C9_USER');
 $password = '';
-$dbname = 'CompuStore';
+$dbname = 'project_3';
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
@@ -35,27 +35,27 @@ $_SESSION['uid']= $gid ;
 
 
 
-$sql = "SELECT * FROM Laptop WHERE model_id LIKE '%$gid%' ";
+$sql = "SELECT * FROM Product WHERE Product_id = '$gid' ";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each ro
        
     while($row = $result->fetch_assoc()) {
-        echo "<div><div id='growIt'>".$row["brand"]."</div>";
+        echo "<div><div id='growIt'>".$row["Prod_brand"]."</div>";
         echo "<a href=cartitems.php><button id='colorIt2'> Go to Cart </button></a><br>";
-        echo $row["model"]."</div><br>";
-        echo "<div>$".$row["price"]."</div><br>";
+        echo $row["Model"]."</div><br>";
+        echo "<div>$".$row["Product_price"]."</div><br>";
         echo "<div><h4> Description </h4>";
-        echo $row["description"] ."</div><br>";
-        echo "<form method=POST action=cart.php>";
+        echo $row["Product_descri"] ."</div><br>";
+        echo "<form method=POST action=checkout.php>";
         echo "<label for=Qty><b>QTY</b></label><br>";
         echo "<input type=text placeholder=0 name=Qty value=1><br><br>";
         echo "<input type=submit id=colorIt name=Buy_Now value=Buy_Now >  ";
         echo "<input type=submit id=colorIt name=Add_to_cart value=Add_to_cart name=Add_to_cart></form>";
        session_start();
 		
-		$_SESSION['cost']= $row["price"];
+		$_SESSION['cost']= $row["Product_price"];
     }
 } else {
     echo "no data";

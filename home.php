@@ -6,7 +6,7 @@
      <script src="//code.jquery.com/jquery-1.10.2.js"></script>
      <script> 
         $(function(){
-        $("#header").load("header.1.html"); 
+        $("#header").load("html/header.1.html"); 
         $("#footer").load("footer.html"); 
         });
 </script>
@@ -17,7 +17,7 @@
 <div class="myGrid">
   <div class="topBox" >
      
-    <img src= "workspace/img/welcome.png" id="welcomeimage"/> <br> <br>
+    <img src= "img/welcome.png" id="welcomeimage"/> <br> <br>
      <div>
     <a href="cartitems.php"><button id="colorIt2"> Go to Cart</button></a><br>
  </div>
@@ -29,7 +29,7 @@
            $host = getenv('IP');
            $username = getenv('C9_USER');
            $password = '';
-           $dbname = 'CompuStore';
+           $dbname = 'project_3';
 
            $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -37,7 +37,7 @@
             die("Connection failed: " . $conn->connect_error);
              } 
 
-$sql = "SELECT model_id,description,model,price,brand FROM Laptop";
+$sql = "SELECT Product_id, Product_descri, Model,Product_price,Prod_brand FROM Product ORDER BY ABS(Product_id)";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -47,10 +47,10 @@ if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         echo "<tr id=headr>";
-        echo "<td><a href= viewing.php?ID=".$row["model_id"].">".$row["brand"]."</a></td>";
-        echo "<td><a href= viewing.php?ID=".$row["model_id"].">".$row["description"]."</a></td>";
-        echo "<td>".$row["model"]."</td>";
-        echo "<td> $".$row["price"]."</td>";
+        echo "<td><a href= viewing.php?ID=".$row["Product_id"].">".$row["Prod_brand"]."</a></td>";
+        echo "<td><a href= viewing.php?ID=".$row["Product_id"].">".$row["Product_descri"]."</a></td>";
+        echo "<td>".$row["Model"]."</td>";
+        echo "<td> $".$row["Product_price"]."</td>";
         echo "</tr>";
     }
     echo "</table>";

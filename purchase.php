@@ -3,7 +3,7 @@
            $username = getenv('C9_USER');
            $password = '';
            $dbname = 'Bank';
-           $dbmainname = 'CompuStore';
+           $dbmainname = 'project_3';
            
            $cardnum=$_POST['uname'];
            $mth=$_POST['Exp'];
@@ -27,7 +27,7 @@
 	if($count!=0) {
 	  
 
-            $sql = "SELECT * FROM Laptop INNER JOIN CartItems on Laptop.model_id= CartItems.model_id INNER JOIN Branch on Branch.br_id = CartItems.br_id INNER JOIN Carttotal on CartItems.acc_id = $userID";
+            $sql = "SELECT * FROM Product INNER JOIN CartItems on Product.Product_id= CartItems.Product_id INNER JOIN Branch on Branch.br_id = CartItems.br_id INNER JOIN Carttotal on CartItems.Customer_id = $userID";
           
             $result = $conn1->query($sql);
 
@@ -36,7 +36,7 @@
            while($row = $result->fetch_assoc()) {
                
             // set the PDO error mode to exception
-            $model= $row["model_id"];
+            $model= $row["Product_id"];
             $br= $row["br_id"];
             $cost=$row["cost"];
             $total=$row["total"];

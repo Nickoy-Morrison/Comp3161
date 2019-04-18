@@ -2,7 +2,7 @@
            $host = getenv('IP');
            $username = getenv('C9_USER');
            $password = '';
-           $dbname = 'CompuStore';
+           $dbname = 'project_3';
            session_start();
            $QTY=$_POST['Qty'];
            $_SESSION['qty']= $QTY;
@@ -14,7 +14,7 @@
              }
              if (isset($_POST['Add_to_cart'])) {
               
-             	$result = mysqli_query($conn,"SELECT * FROM Carttotal WHERE acc_id = '$userID' ");
+             	$result = mysqli_query($conn,"SELECT * FROM Carttotal WHERE Customer_id = '$userID' ");
 	             $count  = mysqli_num_rows($result);
 	             $set = mysqli_fetch_array($result);
 
